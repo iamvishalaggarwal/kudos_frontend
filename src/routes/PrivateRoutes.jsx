@@ -6,7 +6,7 @@ import Users from "../page/users/Users";
 
 const privateRoutes = [
   {
-    path: "/",
+    path: "",
     element: (
       <ProtectedRoute>
         <Home />
@@ -14,7 +14,7 @@ const privateRoutes = [
     ),
   },
   {
-    path: "/users",
+    path: "users",
     element: (
       <ProtectedRoute>
         <Users />

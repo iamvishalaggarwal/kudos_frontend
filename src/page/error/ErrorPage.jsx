@@ -1,70 +1,60 @@
-import React, { useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
-import PropTypes from "prop-types";
+import React from "react";
+import { Box, Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import { Link, useNavigate } from "react-router-dom";
+import { buttonStyles } from "../../utils/CustomStyles";
 
-const ErrorPage = ({ message = "" }) => {
-  const location = useLocation();
+const colors = {
+  primary: "#323232",
+  button: {
+    main: "#ff914d",
+    hover: "#e67e22",
+  },
+};
+
+const ErrorPage = () => {
   const navigate = useNavigate();
-
-  const errorMessage = location.state?.message || message || "";
-
-  useEffect(() => {
-    if (!errorMessage) {
-      navigate("/");
-    }
-  }, [errorMessage, navigate]);
-
   return (
     <Box
       sx={{
-        backgroundColor: "#464646",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        color: colors.primary,
         minHeight: "100vh",
         padding: "2rem",
         textAlign: "center",
-        color: "#e1e1e1",
       }}
     >
-      <Box
-        sx={{
-          width: "100%",
-          maxWidth: "900px",
-        }}
-      >
+      <Box>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            padding: "0 0 10px 0",
-            borderBottom: `1px solid #e1e1e1`,
+            padding: "0 0 20px 0",
+            borderBottom: `1px solid #2D2D2D`,
+            color: "#2D2D2D",
           }}
         >
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            gutterBottom
-            sx={{
-              color: "#e1e1e1",
-              textAlign: "left",
-            }}
-          >
+          <Box fontSize="25px" fontWeight="600" py="10px" letterSpacing="2px">
             404 - Oops :(
-          </Typography>
+          </Box>
+          <Box color="#2D2D2D">
+            Looks like the page you are trying to visit doesn&apos;t exist.
+          </Box>
         </Box>
-        <Typography sx={{ color: "#e1e1e1", textAlign: "left", pt: "20px" }}>
-          {errorMessage}
-        </Typography>
+        <Box pt="20px" color="#2D2D2D">
+          Maybe the page you are looking for was renamed, deleted, or might have
+          never existed. Please check the URL and try again.
+        </Box>
         <Box paddingTop="2rem">
           <Button
             variant="contained"
             startIcon={<ArrowBackOutlinedIcon />}
             onClick={() => navigate("/")}
+            sx={buttonStyles}
           >
             Back to Home
           </Button>
@@ -72,9 +62,6 @@ const ErrorPage = ({ message = "" }) => {
       </Box>
     </Box>
   );
-};
-ErrorPage.propTypes = {
-  message: PropTypes.string,
 };
 
 export default ErrorPage;
