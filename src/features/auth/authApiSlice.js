@@ -18,6 +18,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       extraOptions: {
         requiresAuth: true,
       },
+      keepUnusedDataFor: 0, // Prevent caching
     }),
     getAllUsers: builder.query({
       query: () => "users/",
@@ -25,6 +26,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       extraOptions: {
         requiresAuth: true,
       },
+      keepUnusedDataFor: 0, // Prevent caching
     }),
   }),
 });

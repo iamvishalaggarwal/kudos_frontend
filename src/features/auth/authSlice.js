@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiSlice } from "../../app/apiSlice";
 
 const initialState = {
   accessToken: localStorage.getItem("access") || null,
@@ -18,6 +19,7 @@ const authSlice = createSlice({
       state.accessToken = null;
       state.username = null;
       localStorage.removeItem("access");
+      apiSlice.util.resetApiState();
     },
   },
 });

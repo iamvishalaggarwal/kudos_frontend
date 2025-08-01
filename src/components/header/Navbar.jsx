@@ -10,14 +10,12 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
-  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logOut } from "../../features/auth/authSlice"; // adjust path if needed
-import { ExitToApp, PowerOff, PowerSettingsNew } from "@mui/icons-material";
+import { logOut } from "../../features/auth/authSlice";
+import { PowerSettingsNew } from "@mui/icons-material";
 
 const pages = [
   { link: "/", name: "Home" },
@@ -111,7 +109,6 @@ const Navbar = () => {
             alignItems: "center",
           }}
         >
-          {/* Mobile Menu Icon */}
           <Box
             sx={{ display: { xs: "flex", lg: "none" }, alignItems: "center" }}
           >
@@ -139,24 +136,24 @@ const Navbar = () => {
             </Drawer>
           </Box>
 
-          {/* App Name */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              color: "#1976d2",
-              fontWeight: 700,
-              fontSize: "1.25rem",
-              display: "flex",
-              textTransform: "uppercase",
-              letterSpacing: "1px",
-            }}
-          >
-            KudoSphere
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                color: "#1976d2",
+                fontWeight: 700,
+                fontSize: "1.25rem",
+                display: "flex",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              KudoSphere
+            </Typography>
+          </Link>
 
-          {/* Desktop Navigation */}
           <Box
             sx={{ display: { xs: "none", lg: "flex" }, alignItems: "center" }}
           >

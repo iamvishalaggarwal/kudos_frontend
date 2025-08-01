@@ -9,6 +9,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         requiresAuth: true,
       },
       providesTags: ["Kudos"],
+      keepUnusedDataFor: 0,
     }),
     getGivenKudos: builder.query({
       query: () => "kudos/given/",
@@ -17,6 +18,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         requiresAuth: true,
       },
       providesTags: ["Kudos"],
+      keepUnusedDataFor: 0,
     }),
     getRemainingKudos: builder.query({
       query: () => "kudos/remaining/",
@@ -25,6 +27,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         requiresAuth: true,
       },
       providesTags: ["Kudos"],
+      keepUnusedDataFor: 0,
     }),
 
     createGiveKudo: builder.mutation({

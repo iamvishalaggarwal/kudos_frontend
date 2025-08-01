@@ -16,8 +16,10 @@ import {
 } from "../../features/kudos/kudosApiSlice";
 import Navbar from "../../components/header/Navbar";
 import Backdrop from "../../components/backdrop/Backdrop";
+import usePageTitle from "../../hooks/usePageTitle";
 
 const Home = () => {
+  usePageTitle("Home | KudoSphere")
   const [tabValue, setTabValue] = useState(0);
 
   const { data: userData, isLoading } = useGetCurrentUserQuery();
@@ -60,7 +62,6 @@ const Home = () => {
           </Typography>
 
           <Stack spacing={4}>
-            {/* ORGANIZATION */}
             <Box
               sx={{
                 display: "flex",
@@ -101,7 +102,6 @@ const Home = () => {
                 </Typography>
               </Card>
 
-              {/* KUDOS REMAINING */}
               <Card
                 elevation={2}
                 sx={{
@@ -175,7 +175,7 @@ const Home = () => {
                 }}
               >
                 <Tab label="Received Kudos" />
-                <Tab label="Sent Kudos" />
+                <Tab label="Given Kudos" />
               </Tabs>
 
               <Divider sx={{ bgcolor: "#E8ECEF", mb: 3 }} />
