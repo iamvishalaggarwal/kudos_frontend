@@ -7,10 +7,13 @@ import {
   TextField,
   Button,
   Typography,
+  IconButton,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setNotification } from "../../features/notification/notificationSlice";
 import { useCreateGiveKudoMutation } from "../../features/kudos/kudosApiSlice";
+import { ClearOutlined } from "@mui/icons-material";
+import { buttonStyles, textFieldStyles } from "../../utils/CustomStyles";
 
 const GiveKudosDialog = ({ open, onClose, receiver }) => {
   const [message, setMessage] = useState("");
@@ -41,77 +44,74 @@ const GiveKudosDialog = ({ open, onClose, receiver }) => {
   };
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      fullWidth
-      PaperProps={{
-        sx: {
-          bgcolor: "#444444", 
-          color: "#FFFFFF",
-          borderRadius: 2,
-        },
-      }}
-    >
-      <DialogTitle sx={{ color: "#ff914d", fontWeight: "bold" }}>
-        Send Kudos
+    <Dialog open={open} onClose={onClose} fullWidth>
+      <DialogTitle
+        sx={{
+          color: "#6C63FF",
+          fontWeight: 700,
+          fontSize: { xs: "1.3rem", md: "1.5rem" },
+          textAlign: "center",
+          borderBottom: "1px solid #E8ECEF",
+        }}
+      >
+        Send Kudos to {receiver.username}
       </DialogTitle>
-      <DialogContent>
-        <Typography sx={{ mb: 1, color: "#ffffff" }}>
-          To: <strong style={{ color: "#ff914d" }}>{receiver.username}</strong>
+
+      <IconButton
+        aria-label="close"
+        onClick={onClose}
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          color: "#555",
+        }}
+      >
+        <ClearOutlined />
+      </IconButton>
+
+      <DialogContent sx={{ p: { xs: 1, md: 2 }, textAlign: "center" }}>
+        <Typography
+          variant="body1"
+          sx={{
+            mb: 2,
+            color: "#555",
+            fontSize: { xs: "1rem", md: "1.1rem" },
+            lineHeight: 1.5,
+          }}
+        >
+          Share some appreciation with a personalized message for{" "}
+          <strong style={{ color: "#FFB400" }}>{receiver.username}</strong>.
         </Typography>
         <TextField
           autoFocus
-          margin="dense"
-          label="Your message"
+          label="Write your message"
           type="text"
           fullWidth
           multiline
-          rows={4}
+          rows={3}
           variant="outlined"
           value={message}
+          placeholder="E.g., Great job leading the sprint demo! Your effort really made a difference 👏"
           onChange={(e) => setMessage(e.target.value)}
-          InputProps={{
-            sx: {
-              color: "#fff",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#777",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#aaa",
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ff914d",
-              },
-            },
-          }}
-          InputLabelProps={{
-            sx: {
-              color: "#aaa",
-              "&.Mui-focused": {
-                color: "#ff914d",
-              },
-            },
-          }}
+          sx={textFieldStyles}
         />
       </DialogContent>
-      <DialogActions sx={{ p: 2 }}>
-        <Button onClick={onClose} sx={{ color: "#ccc" }}>
-          Cancel
-        </Button>
+      <DialogActions
+        sx={{
+          justifyContent: "flex-end",
+          p: { xs: 1, md: 2 },
+          borderTop: "1px solid #E8ECEF",
+          pt: 2,
+        }}
+      >
         <Button
           onClick={handleSubmit}
           variant="contained"
-          disabled={!message || isLoading}
-          sx={{
-            backgroundColor: "#ff914d",
-            color: "#fff",
-            "&:hover": {
-              backgroundColor: "#FF8C00",
-            },
-          }}
+          disabled={!message.trim() || isLoading}
+          sx={buttonStyles}
         >
-          Send
+          Send Kudos
         </Button>
       </DialogActions>
     </Dialog>

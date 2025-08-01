@@ -17,6 +17,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../features/auth/authSlice"; // adjust path if needed
+import { ExitToApp, PowerOff, PowerSettingsNew } from "@mui/icons-material";
 
 const pages = [
   { link: "/", name: "Home" },
@@ -43,7 +44,12 @@ const Navbar = () => {
 
   const drawerList = () => (
     <Box
-      sx={{ width: 250, bgcolor: "#323232", height: "100%" }}
+      sx={{
+        width: 250,
+        bgcolor: "#f8f8f8",
+        height: "100%",
+        paddingTop: 2,
+      }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -57,10 +63,11 @@ const Navbar = () => {
                 style={({ isActive }) => ({
                   textAlign: "center",
                   width: "100%",
-                  color: isActive ? "#ff914d" : "#ffffff",
+                  color: isActive ? "#1976d2" : "#333",
                   textDecoration: "none",
-                  fontWeight: isActive ? 700 : 400,
-                  padding: "8px 16px",
+                  fontWeight: isActive ? 600 : 400,
+                  padding: "10px 16px",
+                  fontSize: "1rem",
                 })}
               >
                 {page.name}
@@ -73,7 +80,12 @@ const Navbar = () => {
             <ListItemText
               primary="Logout"
               primaryTypographyProps={{
-                sx: { textAlign: "center", color: "#ff4d4d", fontWeight: 600 },
+                sx: {
+                  textAlign: "center",
+                  color: "#d32f2f",
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                },
               }}
             />
           </ListItemButton>
@@ -86,9 +98,9 @@ const Navbar = () => {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: "#323232",
-        backgroundImage: "unset",
-        boxShadow: "none",
+        backgroundColor: "#ffffff",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
+        borderBottom: "1px solid #e0e0e0",
       }}
     >
       <Box px={{ xs: 2, md: 8 }}>
@@ -111,6 +123,7 @@ const Navbar = () => {
             >
               <MenuIcon
                 sx={{
+                  color: "#333",
                   transform: drawerOpen ? "rotate(90deg)" : "rotate(0deg)",
                   transition: "transform 0.3s ease",
                 }}
@@ -132,10 +145,12 @@ const Navbar = () => {
             noWrap
             component="div"
             sx={{
-              color: "#fff",
+              color: "#1976d2",
               fontWeight: 700,
-              display: { xs: "flex" },
+              fontSize: "1.25rem",
+              display: "flex",
               textTransform: "uppercase",
+              letterSpacing: "1px",
             }}
           >
             KudoSphere
@@ -150,11 +165,13 @@ const Navbar = () => {
                 key={page.name}
                 to={page.link}
                 style={({ isActive }) => ({
-                  color: isActive ? "#ff914d" : "#ffffff",
+                  color: isActive ? "#1976d2" : "#333",
                   textDecoration: "none",
-                  margin: "0 20px",
-                  fontWeight: isActive ? "bold" : "normal",
-                  borderBottom: isActive ? "2px solid #ff914d" : "none",
+                  margin: "0 16px",
+                  fontWeight: isActive ? 600 : 400,
+                  fontSize: "0.95rem",
+                  paddingBottom: "4px",
+                  transition: "all 0.3s ease",
                   textTransform: "uppercase",
                 })}
               >
@@ -162,18 +179,9 @@ const Navbar = () => {
               </NavLink>
             ))}
 
-            <Button
-              onClick={handleLogout}
-              startIcon={<LogoutIcon />}
-              sx={{
-                color: "#ff4d4d",
-                ml: 3,
-                fontWeight: 600,
-                textTransform: "uppercase",
-              }}
-            >
-              Logout
-            </Button>
+            <IconButton onClick={handleLogout} title="Click to logout">
+              <PowerSettingsNew />
+            </IconButton>
           </Box>
         </Toolbar>
       </Box>

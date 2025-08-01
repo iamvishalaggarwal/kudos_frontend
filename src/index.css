@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -14,33 +14,60 @@ body,
   font-weight: 400;
   font-style: normal;
   scroll-behavior: smooth;
-  margin: 0;
-  background-color: #323232;
+  background-color: #f8f9ff;
+  color: #2d2d2d;
+  line-height: 1.5;
 }
-/* Typography */
+
 ul {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
 textarea {
   resize: none;
 }
 
 ::selection {
-  background: #f9e6db;
-  color: #1e1c19;
+  background: #6c63ff;
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bcbcbc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999999;
 }
 
 @supports (scrollbar-color: auto) {
   * {
     scrollbar-width: thin;
+    scrollbar-color: #bcbcbc transparent;
   }
 }

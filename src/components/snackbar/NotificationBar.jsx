@@ -39,10 +39,10 @@ const NotificationBar = () => {
     <div>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        autoHideDuration={5000}
+        autoHideDuration={2500}
         open={isOpen}
         onClose={handleClose}
-        TransitionComponent={SlideTransition}
+        slots={{ transition: SlideTransition }}
       >
         <Alert
           onClose={handleClose}

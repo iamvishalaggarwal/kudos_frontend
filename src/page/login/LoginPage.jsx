@@ -36,7 +36,6 @@ const LoginPage = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  // Redirect if user is already logged in
   useEffect(() => {
     if (currAccessToken) {
       navigate(from, { replace: true });
@@ -69,7 +68,7 @@ const LoginPage = () => {
         setNotification({
           isOpen: true,
           message: "Invalid Credentials, Please try again.",
-          severity: "warning",
+          severity: "error",
         })
       );
     }
@@ -83,9 +82,9 @@ const LoginPage = () => {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
-        bgcolor: "#323232",
-        color: "#FFFFFF",
-        p: 2,
+        bgcolor: "#F8F9FF",
+        color: "#2D2D2D",
+        p: { xs: 2, md: 3 },
       }}
     >
       <Box
@@ -94,68 +93,79 @@ const LoginPage = () => {
         sx={{
           width: "100%",
           maxWidth: "500px",
-          p: 4,
-          bgcolor: "#444444",
-          borderRadius: 2,
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+          p: { xs: 3, md: 4 },
+          bgcolor: "#FFFFFF",
+          borderRadius: 16,
+          boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
           textAlign: "center",
-          mx: 2,
+          mx: "auto",
         }}
       >
         <IconButton
           sx={{
-            bgcolor: "#FFFFFF",
-            color: "#333333",
-            cursor: "auto",
-            mb: 2,
+            bgcolor: "#FFB400",
+            color: "#FFFFFF",
+            mb: 3,
             "&:hover": {
-              bgcolor: "#FFFFFF",
-              color: "#333333",
+              bgcolor: "#FFAA00",
             },
           }}
         >
           <LoginOutlinedIcon />
         </IconButton>
-        <Typography variant="h5" component="h1" gutterBottom>
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{
+            fontWeight: 700,
+            color: "#2D2D2D",
+            mb: 1,
+            fontSize: { xs: "1.5rem", md: "2rem" },
+          }}
+        >
           Welcome to KudoSphere
         </Typography>
-        <Typography variant="body2" color="#B0B0B0" gutterBottom>
-          Use your username to log in to your workspace.
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#555",
+            mb: 3,
+            fontSize: { xs: "0.9rem", md: "1rem" },
+          }}
+        >
+          Log in to your workspace and start appreciating your team.
         </Typography>
 
         <TextField
           fullWidth
           margin="normal"
-          variant="standard"
-          placeholder="username"
+          variant="outlined"
+          placeholder="Username"
           inputRef={usernameRef}
           value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          slotProps={{
-            input: {
-              style: { color: "#FFFFFF" },
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AccountCircleOutlinedIcon sx={{ color: "#FFFFFF" }} />
-                </InputAdornment>
-              ),
-            },
+          onChange={(e) => setUsername(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircleOutlinedIcon sx={{ color: "#6C63FF" }} />
+              </InputAdornment>
+            ),
           }}
           sx={{
-            "& .MuiInput-underline:before": {
-              borderBottomColor: "#B0B0B0",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#E8ECEF",
+              },
+              "&:hover fieldset": {
+                borderColor: "#A3A0FF",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#6C63FF",
+              },
             },
-            "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-              borderBottomColor: "#ff914d",
-            },
-            "& .MuiInput-underline:after": {
-              borderBottomColor: "#ff914d",
-            },
-            "& input:-webkit-autofill": {
-              WebkitBoxShadow: "0 0 0 1000px #444444 inset",
-              WebkitTextFillColor: "#FFFFFF",
+            "& .MuiInputBase-input": {
+              color: "#2D2D2D",
+              fontSize: { xs: "0.95rem", md: "1rem" },
             },
             mb: 2,
           }}
@@ -163,17 +173,15 @@ const LoginPage = () => {
         <TextField
           fullWidth
           margin="normal"
-          variant="standard"
+          variant="outlined"
           type={showPassword ? "text" : "password"}
           placeholder="Password"
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          onChange={(e) => setPassword(e.target.value)}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <KeyOutlinedIcon sx={{ color: "#FFFFFF" }} />
+                <KeyOutlinedIcon sx={{ color: "#6C63FF" }} />
               </InputAdornment>
             ),
             endAdornment: (
@@ -182,7 +190,7 @@ const LoginPage = () => {
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
-                  sx={{ color: "#FFFFFF" }}
+                  sx={{ color: "#6C63FF" }}
                 >
                   {showPassword ? (
                     <VisibilityOffOutlinedIcon />
@@ -192,27 +200,24 @@ const LoginPage = () => {
                 </IconButton>
               </InputAdornment>
             ),
-            style: { color: "#FFFFFF" },
-            disableUnderline: false,
-            sx: {
-              fontSize: "16px",
-            },
           }}
           sx={{
-            "& .MuiInput-underline:before": {
-              borderBottomColor: "#B0B0B0",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#E8ECEF",
+              },
+              "&:hover fieldset": {
+                borderColor: "#A3A0FF",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#6C63FF",
+              },
             },
-            "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-              borderBottomColor: "#ff914d",
+            "& .MuiInputBase-input": {
+              color: "#2D2D2D",
+              fontSize: { xs: "0.95rem", md: "1rem" },
             },
-            "& .MuiInput-underline:after": {
-              borderBottomColor: "#ff914d",
-            },
-            "& input:-webkit-autofill": {
-              WebkitBoxShadow: "0 0 0 1000px #444444 inset",
-              WebkitTextFillColor: "#FFFFFF",
-            },
-            mb: 2,
+            mb: 3,
           }}
         />
 
@@ -220,27 +225,29 @@ const LoginPage = () => {
           type="submit"
           fullWidth
           variant="contained"
+          disabled={!(username && password) || isLoading}
           sx={{
             mt: 2,
-            backgroundColor: "#ff914d",
+            backgroundColor: "#6C63FF",
+            color: "#FFFFFF",
             "&:hover": {
-              backgroundColor: "#FF8C00",
+              backgroundColor: "#5A54CC",
             },
-            borderRadius: "50px",
-            paddingY: "10px",
-            cursor: "pointer",
             "&:disabled": {
-              backgroundColor: "#B0B0B0",
+              backgroundColor: "#D3D3D3",
               color: "#666666",
               cursor: "not-allowed",
-              boxShadow: "none",
-              pointerEvents: "auto",
             },
+            borderRadius: "50px",
+            paddingY: "12px",
+            fontSize: { xs: "0.95rem", md: "1rem" },
+            fontWeight: 600,
+            textTransform: "none",
+            transition: "background-color 0.3s ease",
           }}
-          disabled={!(username && password) || isLoading}
         >
           {isLoading ? (
-            <CircularProgress size={24} color="warning" />
+            <CircularProgress size={24} sx={{ color: "#6C63FF" }} />
           ) : (
             "Login Now"
           )}
