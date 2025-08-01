@@ -55,7 +55,7 @@ VITE_API_BASE_URL=http://localhost:8000/api
 
 ---
 
-## Running the App
+## 🚀 Running the App
 
 ```bash
 npm run dev
@@ -67,7 +67,7 @@ Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## Authentication
+## 🔐 Authentication
 
 - The login endpoint (`/api/auth/login/`) is publicly accessible.
 - All other routes require a **JWT token**.
@@ -75,7 +75,7 @@ Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```folder
 src/
