@@ -6,7 +6,7 @@ import ErrorPage from "../page/error/ErrorPage";
 
 const routes = [
   { path: "/login", element: <LoginPage /> },
-  { path: "/", element: <PrivateRoutes /> },
+  { path: "/*", element: <PrivateRoutes /> },
   { path: "*", element: <ErrorPage /> },
 ];
 
