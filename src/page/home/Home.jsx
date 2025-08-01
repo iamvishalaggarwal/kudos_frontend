@@ -10,31 +10,30 @@ import {
   Card,
 } from "@mui/material";
 import { useGetCurrentUserQuery } from "../../features/auth/authApiSlice";
-import {
-  useGetGivenKudosQuery,
-  useGetReceivedKudosQuery,
-} from "../../features/kudos/kudosApiSlice";
+
 import Navbar from "../../components/header/Navbar";
 import Backdrop from "../../components/backdrop/Backdrop";
 import usePageTitle from "../../hooks/usePageTitle";
+import { useGetKudosSummaryQuery } from "../../features/kudos/kudosApiSlice";
 
 const Home = () => {
-  usePageTitle("Home | KudoSphere")
+  usePageTitle("Home | KudoSphere");
   const [tabValue, setTabValue] = useState(0);
 
   const { data: userData, isLoading } = useGetCurrentUserQuery();
-  const { data: receivedKudos = [], isLoading: isKudosLoading } =
-    useGetReceivedKudosQuery();
-  const { data: sentKudos = [], isLoading: isSentLoading } =
-    useGetGivenKudosQuery();
+  const { data: kudosSummary = {}, isLoading: isKudosLoading } =
+    useGetKudosSummaryQuery();
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
 
-  const isAnyLoading = isLoading || isKudosLoading || isSentLoading;
+  const isAnyLoading = isLoading || isKudosLoading;
 
   if (isAnyLoading) return <Backdrop />;
+
+  const receivedKudos = kudosSummary?.receive || [];
+  const givenKudos = kudosSummary?.given || [];
 
   return (
     <>
@@ -58,7 +57,7 @@ const Home = () => {
               letterSpacing: "-0.02em",
             }}
           >
-            Welcome, {userData?.username || "User"} 
+            Welcome, {userData?.username || "User"}
           </Typography>
 
           <Stack spacing={4}>
@@ -222,7 +221,7 @@ const Home = () => {
                               fontSize: { xs: "1rem", md: "1.1rem" },
                             }}
                           >
-                            From: {kudo.sender.username}
+                            From: {kudo.username}
                           </Typography>
                           <Typography
                             variant="body2"
@@ -260,7 +259,7 @@ const Home = () => {
                   }}
                 >
                   <Stack spacing={2}>
-                    {sentKudos.length === 0 ? (
+                    {givenKudos.length === 0 ? (
                       <Typography
                         variant="body1"
                         sx={{
@@ -273,7 +272,7 @@ const Home = () => {
                         You haven't sent any kudos yet. Start appreciating!
                       </Typography>
                     ) : (
-                      sentKudos.map((kudo) => (
+                      givenKudos.map((kudo) => (
                         <Card
                           key={kudo.id}
                           sx={{
@@ -292,7 +291,7 @@ const Home = () => {
                               fontSize: { xs: "1rem", md: "1.1rem" },
                             }}
                           >
-                            To: {kudo.recipient.username}
+                            To: {kudo.username}
                           </Typography>
                           <Typography
                             variant="body2"

@@ -2,8 +2,8 @@ import { apiSlice } from "../../app/apiSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getReceivedKudos: builder.query({
-      query: () => "kudos/received/",
+    getKudosSummary: builder.query({
+      query: () => "kudos/summary/",
       method: "GET",
       extraOptions: {
         requiresAuth: true,
@@ -11,15 +11,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       providesTags: ["Kudos"],
       keepUnusedDataFor: 0,
     }),
-    getGivenKudos: builder.query({
-      query: () => "kudos/given/",
-      method: "GET",
-      extraOptions: {
-        requiresAuth: true,
-      },
-      providesTags: ["Kudos"],
-      keepUnusedDataFor: 0,
-    }),
+
     getRemainingKudos: builder.query({
       query: () => "kudos/remaining/",
       method: "GET",
@@ -46,8 +38,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useCreateGiveKudoMutation,
-  useGetGivenKudosQuery,
-  useGetReceivedKudosQuery,
   useGetRemainingKudosQuery,
   useLazyGetRemainingKudosQuery,
+  useGetKudosSummaryQuery,
 } = authApiSlice;
