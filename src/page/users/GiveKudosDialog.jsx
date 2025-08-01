@@ -32,11 +32,14 @@ const GiveKudosDialog = ({ open, onClose, receiver }) => {
       );
       onClose();
       setMessage("");
-    } catch {
+    } catch (error) {
+      const msg =
+        error?.data?.non_field_errors[0] ||
+        "Failed to send kudos. Try again later.";
       dispatch(
         setNotification({
           isOpen: true,
-          message: "Failed to send kudos. Try again later.",
+          message: msg,
           severity: "error",
         })
       );

@@ -56,7 +56,7 @@ const Home = () => {
               letterSpacing: "-0.02em",
             }}
           >
-            Welcome, {userData?.username || "User"}
+            Welcome, {userData?.username || "User"} 
           </Typography>
 
           <Stack spacing={4}>

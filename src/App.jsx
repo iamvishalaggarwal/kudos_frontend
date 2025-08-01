@@ -5,6 +5,7 @@ import { logOut, setCredentials } from "./features/auth/authSlice";
 import { setNotification } from "./features/notification/notificationSlice";
 import NotificationBar from "./components/snackbar/NotificationBar";
 import AppRoutes from "./routes/AppRoutes";
+import ErrorBoundary from "./page/error/ErrorBoundary";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,10 +36,10 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <ErrorBoundary>
       <AppRoutes />
       <NotificationBar />
-    </>
+    </ErrorBoundary>
   );
 };
 
